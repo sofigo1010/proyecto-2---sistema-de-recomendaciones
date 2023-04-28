@@ -46,7 +46,7 @@ public class SaveMovieServlet extends HttpServlet {
 	 	String releaseYear = request.getParameter("release_year");
 	 	String tagline = request.getParameter("tagline");
 	 	
-	 	 try ( EmbeddedNeo4j neo4jDriver = new EmbeddedNeo4j( "bolt://44.215.127.186:7687", "neo4j", "elapse-career-realignments" ) )
+	 	 try ( EmbeddedNeo4j neo4jDriver = new EmbeddedNeo4j( "bolt://44.194.255.237:7687", "neo4j", "console-interval-size") )
 	        {
 			 	String myResultTx = neo4jDriver.insertMovie(movieTitle, Integer.parseInt(releaseYear), tagline);
 	        	
