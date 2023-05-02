@@ -1,0 +1,29 @@
+
+//CREACION DE NODOS (EMPRESA, PUESTO, PERSONA)//
+
+CREATE (:Person {id:1, name:'Juan Perez', age:30, gender:'M', education:'B.S. Computer Science'})
+CREATE (:Person {id:2, name:'Maria Rodriguez', age:25, gender:'F', education:'B.S. Business Administration'})
+CREATE (:Person {id:3, name:'Luis Hernandez', age:40, gender:'M', education:'M.S. Mechanical Engineering'})
+CREATE (:Company {id:1, name:'IBM', industry:'Technology', location:'New York'})
+CREATE (:Company {id:2, name:'Microsoft', industry:'Technology', location:'Washington'})
+CREATE (:Company {id:3, name:'Goldman Sachs', industry:'Finance', location:'New York'})
+CREATE (:Job {id:1, title:'Software Engineer', seniority:'Mid-level'})
+CREATE (:Job {id:2, title:'Business Analyst', seniority:'Entry-level'})
+CREATE (:Job {id:3, title:'Investment Banker', seniority:'Senior-level'})
+
+
+//RELACIONES ENTRE PERSONAS Y EMPRESAS Y PUESTOS
+
+MATCH (p:Person {id:1}), (c:Company {id:1})
+CREATE (p)-[:WORKS_FOR]->(c)
+MATCH (p:Person {id:1}), (j:Job {title:'Software Engineer'})
+CREATE (p)-[:WORKS_AS]->(j)
+MATCH (p:Person {id:2}), (c:Company {id:1})
+CREATE (p)-[:WORKS_FOR]->(c)
+MATCH (p:Person {id:2}), (j:Job {title:'Business Analyst'})
+CREATE (p)-[:WORKS_AS]->(j)
+
+
+//MUESTRA GRAFO
+MATCH (n)
+RETURN n
