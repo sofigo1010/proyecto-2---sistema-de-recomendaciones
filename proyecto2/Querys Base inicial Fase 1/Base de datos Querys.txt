@@ -1,29 +1,51 @@
 
-//CREACION DE NODOS (EMPRESA, PUESTO, PERSONA)//
+//CREACION DE NODOS (EMPRESA, PUESTO, ENCARGADO, CATEGORIA)//
+CREATE (:Categoria {id:1, categoria:'Technology'})
+CREATE (:Categoria {id:2, categoria:'Recursos Humanos'})
+CREATE (:Categoria {id:3, categoria:'Finanzas'})
+CREATE (:Encargado {id:1, name:'Juan Perez', education:'B.S. Computer Science', puesto: 'entrevistador'})
+CREATE (:Encargado {id:2, name:'Maria Rodriguez', education:'B.S. Business Administration', puesto: 'entrevistador'})
+CREATE (:Encargado {id:3, name:'Luis Hernandez', education:'M.S. Mechanical Engineering', puesto: 'entrevistador'})
+CREATE (:Empresa {id:1, name:'IBM', Categoria_de_la_Empresa:'Technology'})
+CREATE (:Empresa {id:2, name:'Microsoft', Categoria_de_la_Empresa:'name Humanos'})
+CREATE (:Empresa {id:3, name:'Goldman Sachs', Categoria_de_la_Empresa:'Finanzas'})
+CREATE (:Puesto {id:1, titulo:'Software Engineer',Experiencia_laboral: 'Mayor a 10 años', Salario: '10,000$'})
+CREATE (:Puesto {id:2, titulo:'Business Analyst',Experiencia_laboral: 'Mayor a 5 años', Salario: '5,000$'})
+CREATE (:Puesto {id:3, titulo:'Investment Banker', Experiencia_laboral: 'Ninguna', Salario: '1,000$'})
 
-CREATE (:Person {id:1, name:'Juan Perez', age:30, gender:'M', education:'B.S. Computer Science'})
-CREATE (:Person {id:2, name:'Maria Rodriguez', age:25, gender:'F', education:'B.S. Business Administration'})
-CREATE (:Person {id:3, name:'Luis Hernandez', age:40, gender:'M', education:'M.S. Mechanical Engineering'})
-CREATE (:Company {id:1, name:'IBM', industry:'Technology', location:'New York'})
-CREATE (:Company {id:2, name:'Microsoft', industry:'Technology', location:'Washington'})
-CREATE (:Company {id:3, name:'Goldman Sachs', industry:'Finance', location:'New York'})
-CREATE (:Job {id:1, title:'Software Engineer', seniority:'Mid-level'})
-CREATE (:Job {id:2, title:'Business Analyst', seniority:'Entry-level'})
-CREATE (:Job {id:3, title:'Investment Banker', seniority:'Senior-level'})
 
+//RELACIONES ENTRE ENCARGADOS,EMPRESAS,PUESTOS Y CATEGORIAS
+MATCH (c:Categoria {id:1}), (e:Empresa {id:1})
+CREATE (e)-[:Categoria_de]->(c)
+MATCH (c:Categoria {id:2}), (e:Empresa {id:2})
+CREATE (e)-[:Categoria_de]->(c)
+MATCH (c:Categoria {id:3}), (e:Empresa {id:3})
+CREATE (e)-[:Categoria_de]->(c)
 
-//RELACIONES ENTRE PERSONAS Y EMPRESAS Y PUESTOS
+MATCH (c:Empresa {id:1}), (e:Encargado {id:1})
+CREATE (e)-[:Encargado_de]->(c)
+MATCH (c:Empresa {id:2}), (e:Encargado {id:2})
+CREATE (e)-[:Encargado_de]->(c)
+MATCH (c:Empresa {id:3}), (e:Encargado {id:3})
+CREATE (e)-[:Encargado_de]->(c)
 
-MATCH (p:Person {id:1}), (c:Company {id:1})
-CREATE (p)-[:WORKS_FOR]->(c)
-MATCH (p:Person {id:1}), (j:Job {title:'Software Engineer'})
-CREATE (p)-[:WORKS_AS]->(j)
-MATCH (p:Person {id:2}), (c:Company {id:1})
-CREATE (p)-[:WORKS_FOR]->(c)
-MATCH (p:Person {id:2}), (j:Job {title:'Business Analyst'})
-CREATE (p)-[:WORKS_AS]->(j)
+MATCH (c:Empresa {id:1}), (e:Puesto {id:1})
+CREATE (e)-[:Puesto_disponible]->(c)
+MATCH (c:Empresa {id:2}), (e:Puesto {id:2})
+CREATE (e)-[:Puesto_disponible]->(c)
+MATCH (c:Empresa {id:3}), (e:Puesto {id:3})
+CREATE (e)-[:Puesto_disponible]->(c)
+MATCH (c:Empresa {id:3}), (e:Puesto {id:2})
+CREATE (e)-[:Puesto_disponible]->(c)
+MATCH (c:Empresa {id:1}), (e:Puesto {id:3})
+CREATE (e)-[:Puesto_disponible]->(c)
 
 
 //MUESTRA GRAFO
 MATCH (n)
 RETURN n
+
+//BORRAR GRAFO
+MATCH (n)
+DETACH DELETE n
+
