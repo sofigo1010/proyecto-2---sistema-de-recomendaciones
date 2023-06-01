@@ -1,0 +1,204 @@
+@charset "UTF-8";
+
+/*arriba y abajo, para el espacio*/
+.altura-a-b{
+    padding: 150px;
+
+}
+
+body{
+    background-image: linear-gradient(to top, #bdc2e8 0%, #bdc2e8 1%, #e6dee9 100%);
+    background-repeat: no-repeat ;
+    background-size: cover;
+    background-attachment: fixed;
+    
+}
+header {
+    display: flex;
+    background: radial-gradient(902px at 10% 20%, rgb(18, 50, 90) 0%, rgb(207, 199, 252) 100.2%);
+    text-align: center;
+    padding: 20px;
+    justify-content: flex-start;
+    color: white;
+    font-size: 30px;
+    font-family: 'EB Garamond', Garamond, serif;
+}
+h1{
+    
+    text-align: left;
+    padding: 20px;
+    color: white;
+    font-size: 30px;
+    font-family: 'EB Garamond', Garamond, serif;
+    margin: 0;
+  }
+.boton-container {
+    display: flex;
+    align-items: center;
+    margin-left: 20px;
+  } 
+.botonesheader {
+    background-color: radial-gradient(902px at 10% 20%, rgb(18, 50, 90) 0%, rgb(207, 199, 252) 100.2%); 
+    border-color: radial-gradient(902px at 10% 20%, rgb(18, 50, 90) 0%, rgb(207, 199, 252) 100.2%); 
+    color: white;
+    padding: 10px 20px;  
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-right: 10px;
+}
+.botonesbusquedacat {
+    background:radial-gradient(902px at 10% 20%, rgb(18, 50, 90) 0%, rgb(207, 199, 252) 100.2%); 
+    border-color: radial-gradient(902px at 10% 20%, rgb(18, 50, 90) 0%, rgb(207, 199, 252) 100.2%);
+    color: white;
+    padding: 30px 100px;  
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-right: 10px;
+    position: absolute; 
+    top: 250px; 
+    right: 250px;
+}
+.inputbusqueda {
+    border-color: radial-gradient(902px at 10% 20%, rgb(18, 50, 90) 0%, rgb(207, 199, 252) 100.2%);
+    padding: 30px 140px;  
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 10px;
+    margin-right: 10px;
+    position: absolute; 
+    top: 350px; 
+    right: 250px;
+    resize: none; /* Esto evita que los usuarios cambien el tamaño de la caja de entrada */
+}
+.botonesvercat {
+    background:radial-gradient(902px at 10% 20%, rgb(18, 50, 90) 0%, rgb(207, 199, 252) 100.2%); 
+    border: radial-gradient(902px at 10% 20%, rgb(18, 50, 90) 0%, rgb(207, 199, 252) 100.2%);
+    color: white;
+    padding: 30px 150px;  
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-right: 10px;
+    position: absolute; 
+    top: 250px; 
+    left: 250px;
+}
+.botonagregar{
+    background-color: linear-gradient(to top, #09203f 0%, #537895 100%); 
+    color: white;
+    padding: 10px 20px;  
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-right: 10px;
+}
+.image-container {
+    width: 100%; /* Esto hará que el contenedor de la imagen tenga el ancho completo de su contenedor padre. */
+    height: 50vh; /* Esto hará que el contenedor de la imagen tenga la mitad de la altura de la ventana del navegador. */
+    overflow: hidden; /* Esto ocultará cualquier parte de la imagen que exceda el tamaño del contenedor. */
+    object-fit: cover;
+    object-position: 30% 70%;
+}
+
+h2{
+    font-size: 24px;
+    font-weight: bold;
+    margin-right: 20px;
+    text-align: center;
+}
+.contenido {
+    font-size: 16px;
+    font-weight: bold;
+    margin-right: 20px;
+    text-align: center;
+    margin: 50px;
+    max-width: 800px;
+}
+.inputbusqueda {
+    border-color: radial-gradient(902px at 10% 20%, rgb(18, 50, 90) 0%, rgb(207, 199, 252) 100.2%);
+    padding: 30px 140px;  
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 10px;
+    margin-right: 10px;
+    position: absolute; 
+    top: 350px; 
+    right: 250px;
+    resize: none; /* Esto evita que los usuarios cambien el tamaño de la caja de entrada */
+}
+
+.inputcategoria {
+    border-color: radial-gradient(902px at 10% 20%, rgb(18, 50, 90) 0%, rgb(207, 199, 252) 100.2%);
+    padding: 30px 140px;  
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 10px;
+    resize: none; /* Esto evita que los usuarios cambien el tamaño de la caja de entrada */
+    position: absolute; 
+    top: 30%; 
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.inputEmpresa {
+    border-color: radial-gradient(902px at 10% 20%, rgb(18, 50, 90) 0%, rgb(207, 199, 252) 100.2%);
+    padding: 30px 140px;  
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 10px;
+    resize: none; /* Esto evita que los usuarios cambien el tamaño de la caja de entrada */
+    position: absolute; 
+    top: 45%; 
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.inputpuesto {
+    border-color: radial-gradient(902px at 10% 20%, rgb(18, 50, 90) 0%, rgb(207, 199, 252) 100.2%);
+    padding: 30px 140px;  
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 10px;
+    resize: none; /* Esto evita que los usuarios cambien el tamaño de la caja de entrada */
+    position: absolute; 
+    top: 60%; 
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.inputencargado {
+    border-color: radial-gradient(902px at 10% 20%, rgb(18, 50, 90) 0%, rgb(207, 199, 252) 100.2%);
+    padding: 30px 140px;  
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 10px;
+    resize: none; /* Esto evita que los usuarios cambien el tamaño de la caja de entrada */
+    position: absolute; 
+    top: 75%; 
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.botonesagregartrab{
+    background:radial-gradient(902px at 10% 20%, rgb(18, 50, 90) 0%, rgb(207, 199, 252) 100.2%); 
+    border-color: radial-gradient(902px at 10% 20%, rgb(18, 50, 90) 0%, rgb(207, 199, 252) 100.2%);
+    color: white;
+    padding: 30px 100px;  
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-right: 10px;
+    position: absolute; 
+    top:630px; 
+    right: 600px;
+}

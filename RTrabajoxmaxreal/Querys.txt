@@ -1,0 +1,50 @@
+
+//CREACION DE NODOS (EMPRESA, PUESTO, ENCARGADO, CATEGORIA)//
+CREATE (:Categoria {categoria:'Technology'})
+CREATE (:Categoria {categoria:'Recursos Humanos'})
+CREATE (:Categoria { categoria:'Finanzas'})
+CREATE (:Empresa { name:'IBM'})
+CREATE (:Empresa { name:'Microsoft'})
+CREATE (:Empresa {name:'Goldman Sachs'})
+CREATE (:Encargado { name:'Juan Perez'})
+CREATE (:Encargado { name:'Maria Rodriguez'})
+CREATE (:Encargado {name:'Luis Hernandez'})
+CREATE (:Puesto { name:'CEO'})
+CREATE (:Puesto {name:'Software developer'})
+CREATE (:Puesto { name:'Programador Backend'})
+
+//RELACIONES ENTRE ENCARGADOS,EMPRESAS,PUESTOS Y CATEGORIAS
+MATCH (c:Categoria {categoria:'Technology'}), (e:Empresa { name:'IBM'})
+CREATE (e)-[:Categoria_de]->(c)
+
+MATCH (c:Categoria {categoria:'Recursos Humanos'}), (e:Empresa { name:'Microsoft'})
+CREATE (e)-[:Categoria_de]->(c)
+MATCH (c:Categoria { categoria:'Finanzas'}), (e:Empresa {name:'Goldman Sachs'})
+CREATE (e)-[:Categoria_de]->(c)
+
+MATCH (c:Empresa { name:'IBM'}), (e:Encargado { name:'Juan Perez'})
+CREATE (e)-[:Encargado_de]->(c)
+MATCH (c:Empresa { name:'Microsoft'}), (e:Encargado { name:'Maria Rodriguez'})
+CREATE (e)-[:Encargado_de]->(c)
+MATCH (c:Empresa {name:'Goldman Sachs'}), (e:Encargado {name:'Luis Hernandez'})
+CREATE (e)-[:Encargado_de]->(c)
+
+MATCH (c:Empresa { name:'IBM'}), (e:Puesto { name:'CEO'})
+CREATE (e)-[:Puesto_disponible]->(c)
+MATCH (c:Empresa { name:'Microsoft'}), (e:Puesto {name:'Software developer'})
+CREATE (e)-[:Puesto_disponible]->(c)
+MATCH (c:Empresa {name:'Goldman Sachs'}), (e:Puesto { name:'Programador Backend'})
+CREATE (e)-[:Puesto_disponible]->(c)
+MATCH (c:Empresa {name:'Goldman Sachs'}), (e:Puesto {name:'Software developer'})
+CREATE (e)-[:Puesto_disponible]->(c)
+MATCH (c:Empresa { name:'IBM'}), (e:Puesto { name:'Programador Backend'})
+CREATE (e)-[:Puesto_disponible]->(c)
+
+
+//MUESTRA GRAFO
+MATCH (n)
+RETURN n
+
+//BORRAR GRAFO
+MATCH (n)
+DETACH DELETE n
