@@ -35,25 +35,30 @@ css/estilo.css
             <div>
                 <div class="agregacionreal">
     
-                    <form action="/Agregarreal" method="POST">
+                    <form action="/agregarTrabajo" method="POST">
                       <!-- aqui solo tiene que ingresar los datos y devolverlos para guardarlos en la base de datos-->
-                        <input type = "text" class="inputcategoria" rows="1" placeholder="Categoria de la empresa"> </input>
-                        <input type = "text" class="inputEmpresa" rows="1" placeholder="Nombre de la Empresa"> </input>
-                        <input type = "text" class="inputpuesto" rows="1" placeholder="Puesto disponible"> </input>
-                        <input type = "text" class="inputencargado" rows="1" placeholder="Nombre del encargado"> </input>
-  
+                        <input id="Categoria" type = "text" value="{{ Categoria }}" name="Categoria" class="inputcategoria" rows="1" placeholder="Categoria de la empresa" required> </input>
+                        <input id="Empresa" type = "text" value="{{ Empresa }}" name="Empresa" class="inputEmpresa" rows="1" placeholder="Nombre de la Empresa" required> </input>
+                        <input id="Puesto" type = "text" value="{{ Puesto }}" name="Puesto" class="inputpuesto" rows="1" placeholder="Puesto disponible" required> </input>
+                        <input id="Encargado" type = "text" value="{{ Encargado }}" name="Encargado" class="inputencargado" rows="1" placeholder="Nombre del encargado" required> </input>
+   
                       <div >
                         <div >
-                            <button type = "submit" class="botonesagregartrab">Agregar Trabajo</button>
+                            <button type = "submit" class="botonesagregartrab" required>Agregar Trabajo</button>
                         </div>
                         <div id="meter"></div>
                   
-
-
                     </form>
                     
                 </div>
-  
+                
+                <div id="dvInserta">
+                    {% if inserta %} 
+                        <script text="js" lang="js">
+                            alert("Trabajo agregado correctamente");
+                        </script>
+                    {% endif %}
+                </div>
   
   
             </div>
@@ -65,6 +70,6 @@ css/estilo.css
 </main>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
     
-    
+
 </body>
 </html>

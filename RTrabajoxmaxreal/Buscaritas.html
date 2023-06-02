@@ -12,6 +12,8 @@ css/estilo.css
 
     <link rel="stylesheet" href="static/css/colorcitos.css">
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
     <title>trabajosmax+</title>
 </head>
 <body><center>
@@ -35,35 +37,102 @@ css/estilo.css
             <div>
                 <div class="col-md-16 formulario2">
     
-                    <form action="/Buscaritas" method="POST">
+                    <form action="/buscarTrabajosXCategoria" method="POST">
                       
-                        <input type = "text" class="inputbusqueda" rows="1" placeholder="Ej: Technology,Home"> </input>
+                        <input id="Categoria" value="{{ Categoria }}" name="Categoria" type = "text" class="inputbusqueda" rows="1" placeholder="Ej: Technology,Home" required> </input>
   
                       <div >
                         <div >
                             <!-- aqui se deberia de buscar el trabajo poniendo la categoria-->
-                            <button type = "submit" class="botonesbusquedacat">Buscar trabajo por categoria</button>
-                        </div>
-                        <div id="datos"></div>
+                            <button type = "submit" class="botonesbusquedacat" required>Buscar trabajo por categoria</button>
+                        </div>                       
                   
-
-
                     </form>
                     
-                </div>
-  
-  
+                </div> 
   
             </div>
         </div>
+        
 
-        <!-- aqui se deberia de ensenar todas las categorias que hay-->
-        <button type = "button" class="botonesvercat">Ver categoria</button>
+
+        <form action="/verCategorias" method="POST">
+             <!-- aqui se deberia de ensenar todas las categorias que hay-->
+             <button type = "submit" class="botonesvercat">Ver categoria</button>                         
+        </form>
+
+
+        <!-- Resultados de los trabajos encontrados-->
+        <div id="dvTrabajos" style="top:350px; position: relative;">
+            {% if busqueda and realexiste %} 
+               <h3>Trabajos Encontrados</h3>
+               <br/>
+               <div class="row">                                   
+                    {% for value in trabajos %}
+                    <div class="col-md-3 " style="margin-bottom:10px;">
+                        <div class="card border-dark bg-light mb-3" style="max-width: 18rem;">
+                            <div class="card-header" style="height: 65px;"><h5>{{ value[1] }}</h5></div>
+                            <div class="card-body">
+                                <p class="card-title">{{ value[0] }}</p>
+                                <p class="card-text">{{ value[2] }}</p>
+                            </div>
+                        </div>
+                    </div> 
+                    {% endfor %}
+                </div>
+                <br/>
+                <br/>
+                <br/>
+            {% elif flagError %}
+            
+                <script text="js" lang="js">
+                   alert("{{ mensaje }}");
+                </script>
+                
+            {% endif %}
+        </div>
+
+
+         <!-- Resultados de las categorias-->
+        <div id="dvCategorias" style="top:350px; position: relative;">
+            {% if ver %}                
+                
+                <h3>Listado de Categorias</h3>
+                <br/>
+                
+
+                <div class="row">
+                                       
+                    {% for value in categorias %}
+                    <div class="col-md-3 " style="margin-bottom:10px;">
+                        <div class="card border-dark bg-light mb-3" style="max-width: 18rem;">
+                            <div class="card-body">
+                                <h5><p class="card-title">{{ value }}</p></h5>
+                            </div>
+                        </div>
+                    </div> 
+                    {% endfor %}                         
+                    
+                </div>
+                <br/>
+                <br/>
+                <br/>
+
+
+            {% endif %}   
+         </div>
+
+
     </div>
             
 </main>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
     
-    
+    <script lang="js" text="script">
+
+  
+
+    </script>
+        
 </body>
 </html>

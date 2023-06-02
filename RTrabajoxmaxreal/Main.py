@@ -46,7 +46,15 @@ class Neo4JExample:
         arrcategorias = []
         for record in result:
             arrcategorias.append(record["c.categoria"])
-        return arrcategorias
+        
+        #Se quitan los duplicados
+        resultantList = []
+ 
+        for element in arrcategorias:
+            if element not in resultantList:
+                resultantList.append(element)
+
+        return resultantList
 
     
     @staticmethod
@@ -85,40 +93,58 @@ class Neo4JExample:
         return trabajos
 
 
-app = Flask(__name__, template_folder='C:\\Users\\sofia\\Downloads\\RTrabajoxmaxreal')#aqui se empieza a crear la aplicacion
-neo4j = Neo4JExample('bolt://18.212.169.121:7687', 'neo4j', 'lungs-binder-videos')
-#neo4j,neo4jj
+#se define la ruta del directorio
+app = Flask(__name__, template_folder='C:\\Users\\andre\\OneDrive\\Desktop\\proyecto2-trabajosmax-main\\RTrabajosMaxRealFinal')#aqui se empieza a crear la aplicacion
+neo4j = Neo4JExample('bolt://44.202.37.222:7687', 'neo4j', 'feed-sea-guide')
+
 
 @app.route('/') #se define un temporador para la ruta principal '/login'
 
-#recicladareal
-def inicio():
-    #renderizamos la plantilla, formulario html
-    return render_template('index.html')
 
-#@app.route('/form2', methods=['POST'])
-#def Form2():
-    #return render_template('PrimerIngreso.html')
-@app.route('/Buscaritas', methods =['POST'])
-def buscaritas():
-    categorias = request.form["Categoria"] 
+def inicio():
+
+    return render_template('Index.html')
+
+@app.route('/buscarTrabajosXCategoria', methods =['POST'])
+def buscarTrabajoCategoria():
+    categorias = request.form["Categoria"].split(",")  # Separamos las categorías por la coma
     listgetcategories = neo4j.callGetCategorias()
-    realexiste = False
-    for x in listgetcategories:
-        if(categorias.lower() == x.lower()):
-            realexiste = True
-    if (realexiste):
-        trabajos, arraytrabajos = neo4j.calltrabajosmatch(categorias)
-        return render_template('Buscaritas.html',busqueda = True, trabajos = arraytrabajos, realexiste=True)
-    else:
-        return render_template('Buscaritas.html',flagError = True, mensaje = "Una o las categorias que buscaste no existe")
-        
-    return "preach"
-    
+    arraytrabajos = []
+    for categoria in categorias:
+        realexiste = False
+        for x in listgetcategories:
+            if(categoria.lower().strip() == x.lower()):  # Usamos strip() para eliminar los espacios en blanco al inicio y al final
+                realexiste = True
+        if (realexiste):
+            trabajos = neo4j.calltrabajosmatch(categoria)
+            arraytrabajos.extend(trabajos)  # Agregamos los trabajos encontrados a la lista total
+        else:
+            return render_template('Buscaritas.html',flagError = True, mensaje = "Una o las categorias que buscaste no existe")
+    return render_template('Buscaritas.html',busqueda = True, trabajos = arraytrabajos, realexiste=True)
+
+
+
+@app.route('/verCategorias', methods =['POST'])
+def verCategorias():
+    listgetcategories = neo4j.callGetCategorias()    
+    return render_template('Buscaritas.html', ver = True, categorias = listgetcategories)
+
+
+@app.route('/agregarTrabajo', methods =['POST'])
+def agregarTrabajo():
+    categoria = request.form["Categoria"] 
+    empresa = request.form["Empresa"] 
+    puesto = request.form["Puesto"] 
+    encargado = request.form["Encargado"] 
+    valor = neo4j.callCreateNewJob(categoria, empresa, puesto, encargado)
+
+    return render_template('Agregarreal.html', inserta = True)
+
+
+
 @app.route('/Agregarreal', methods=['GET'])
 def agregar():
     return render_template("Agregarreal.html")
-#cambiar
 
 @app.route('/buscar', methods=['GET'])
 def buscar():
